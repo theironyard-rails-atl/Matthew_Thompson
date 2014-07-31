@@ -52,8 +52,8 @@ class Quiz
      }
      ]
   def initialize
-    @correct_answers = 0
-    @wrong_answers = 0
+    @correct_answers = []
+    @wrong_answers = []
   end
 
   def ask_questions
@@ -75,13 +75,17 @@ class Quiz
 
         if user_input.downcase == correct_answer.downcase
           puts "Correct"
-          @correct_answers += 1
+          @correct_answers << question[:question]
         else
           puts "Wrong"
-          @wrong_answers -= 1
+          @wrong_answers << question[:question]
         end
     end
-    puts "Congratulations!! you got #{@correct_answers} right and #{@wrong_answers} out of #{questions.length}"
+    puts "Congratulations!! you got #{@correct_answers.count} right and #{@wrong_answers.count} out of #{questions.length}."
+    puts "You missed:"
+      @wrong_answers.each do |x|
+        puts "#{x}"
+      end
   end
 end
 
