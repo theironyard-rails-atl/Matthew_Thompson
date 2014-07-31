@@ -1,4 +1,4 @@
-class LetterCounter 
+class LetterCounter
 
 
   def initialize
@@ -11,9 +11,11 @@ class LetterCounter
     user_input = gets.chomp.downcase
 
     while @letter.length == 1
-      letter_add = user_input.count("#{@letter}")
-      @count_hash.store(@letter.to_s, letter_add)
-      @letter.succ!
+      
+         letter_add = user_input.count("#{@letter}")
+         @count_hash.store(@letter.to_s, letter_add)
+         @letter.succ!
+
     end
 
     puts @count_hash

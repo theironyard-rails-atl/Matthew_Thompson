@@ -53,6 +53,7 @@ class Quiz
      ]
   def initialize
     @correct_answers = 0
+    @wrong_answers = 0
   end
 
   def ask_questions
@@ -63,7 +64,12 @@ class Quiz
         correct_answer = question[:choices][answer_index]
 
         puts question[:question]
-        puts question[:choices]
+        num = 1
+        question[:choices].each do |choice|
+          puts "#{num}) #{choice}"
+          num += 1
+        end
+        puts "Your Answer: "
         user_input = gets.chomp
         puts "You said #{user_input}"
 
@@ -72,9 +78,10 @@ class Quiz
           @correct_answers += 1
         else
           puts "Wrong"
+          @wrong_answers -= 1
         end
     end
-    puts @correct_answers
+    puts "Congratulations!! you got #{@correct_answers} right and #{@wrong_answers} out of #{questions.length}"
   end
 end
 
