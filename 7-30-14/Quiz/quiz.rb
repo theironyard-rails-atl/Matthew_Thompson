@@ -3,62 +3,19 @@
 #
 #
 class Quiz
-@@questions = [
-  {
-    question: "How many days are there in a year?",
-    choices: [
-      "400",
-      "345",
-      "365",
-      "366" ],
-      answer: 2
-  },
-  {
-    question: "Who was the first president?",
-    choices: [
-      "George Washington",
-      "barack obama",
-      "George Bush",
-      "abraham lincoln"],
-      answer: 0
-  },
-  {
-     question: "What party is currently in office?",
-     choices: [
-       "Republican party",
-       "Constitution Party",
-       "Democratic Party",
-       "Green Party"],
-       answer: 2
-  },
-  {
-     question: "Where is the color of the sky?",
-     choices: [
-       "Red",
-       "Blue",
-       "Yellow",
-       "Black"],
-       answer: 1
-  },
 
-  {
-     question: "When is this quiz going to end?",
-     choices: [
-       "Tomorrow",
-       "Never",
-       "Right after this question",
-       "Seriously Stop"],
-       answer: 1
-     }
-     ]
+
+
   def initialize
     @correct_answers = []
     @wrong_answers = []
+
   end
 
-  def ask_questions
-      @@questions.shuffle!
-      @@questions.each do |question|
+  def ask_questions(arg)
+      @questions_list = arg
+      @questions_list.shuffle!
+      @questions_list.each do |question|
 
         answer_index = question[:answer]
         correct_answer = question[:choices][answer_index]
@@ -71,23 +28,44 @@ class Quiz
         end
         puts "Your Answer: "
         user_input = gets.chomp
-        puts "You said #{user_input}"
+
 
         if user_input.downcase == correct_answer.downcase
-          puts "Correct"
+          puts "Correct!"
           @correct_answers << question[:question]
         else
           puts "Wrong"
           @wrong_answers << question[:question]
-        end
-    end
-    puts "Congratulations!! you got #{@correct_answers.count} right and #{@wrong_answers.count} out of #{questions.length}."
-    puts "You missed:"
-      @wrong_answers.each do |x|
-        puts "#{x}"
       end
+    end
+  end
+
+  def results
+    puts "_" * 150
+    puts "You got #{@correct_answers.length} correct and #{@wrong_answers.length} wrong."
   end
 end
 
-quiz = Quiz.new
-quiz.ask_questions
+class Questions
+attr_reader :questions_list
+
+  def initialize
+    @questions_list = []
+  end
+
+
+  def add new_question={}
+    @new_question = new_question
+    @questions_list << @new_question
+    puts "There are #{@questions_list.length}"
+  end
+
+
+
+
+end
+
+  #def modify_question(num)
+    #@num = num -= 1
+    #@selected_question = @questions[@num]
+  #end
