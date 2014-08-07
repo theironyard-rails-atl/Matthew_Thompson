@@ -1,3 +1,6 @@
+Character_list = ["Kung fu man", "Chuck Norris"]
+
+
 class Character
   attr_reader :max_damage, :difficulty, :character
   attr_accessor :life
@@ -43,16 +46,18 @@ class Character
 end
 
 
-class Chuck_Noris < Character
+class Chuck_Norris < Character
 
 
   def initialize(difficulty=1)
-    @character = ["Chuck Noris", {:Quote => ["Chuck Norris does not produce tears, he exercises hs Crycepts", "Chuck Norris commited suicide once...He lived."]}]
+    @character = {:quotes => ["Chuck Norris does not produce tears, he exercises hs Crycepts", "Chuck Norris commited suicide once...He lived."]}
     @max_damage = 20
   end
 
   def hit?
     if rand(1..6) > 3
+      true
+    end
   end
 
 
@@ -62,7 +67,11 @@ class Chuck_Noris < Character
     else
       puts "Missed!"
     end
+    retaliation
+  end
 
+  def chuck_quote
+    @character[:quotes].sample
   end
 
 end
@@ -76,5 +85,16 @@ class Kung_fu_man < Character
     @character = "Kung fu Man"
     super
   end
+
+end
+
+class Game
+  attr_reader :char
+
+  def initialize(char)
+    @char = char
+    char.new
+  end
+
 
 end
