@@ -59,7 +59,7 @@
 
 
   def start_vs_battle
-    puts "#{@player} VS. #{@opponent}"
+    puts "#{@player.name} VS. #{@opponent.name}"
     print "..."
     sleep(3)
     puts "Fight!"
@@ -67,7 +67,7 @@
       @player.attack(@opponent)
     end
   end
-  
+
 
 puts "Welcome! what Character would you like to select?"
 puts
