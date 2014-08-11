@@ -13,26 +13,26 @@ class Character
   end
 
   def damage
-    rand(0..@max_damage)
+    rand(2..@max_damage)
   end
 
   def retaliation(other)
-    if other.alive?
+    self.life -= other.damage
       puts "They now have #{other.life}xp left"
       puts
-      self.life -= other.damage
       puts "They retaliated. You now have #{self.life}xp left"
-    else
-      puts "Victory is yours! Now party hardy ;)"
+    if self.dead?
+      puts "Sorry you lose"
     end
   end
 
   def attack(other)
+    other.life -= self.damage
     if other.alive?
-      other.life -= self.damage
       retaliation(other)
     else
       puts "He's Dead fool!"
+      puts "Victory!"
     end
   end
 
@@ -47,11 +47,14 @@ end
 
 
 class Chuck_Norris < Character
+  attr_reader :name
 
 
   def initialize(difficulty=1)
     @character = {:quotes => ["Chuck Norris does not produce tears, he exercises hs Crycepts", "Chuck Norris commited suicide once...He lived."]}
     @max_damage = 20
+    @name = "Chuck Norris"
+    super
   end
 
   def hit?
@@ -64,10 +67,11 @@ class Chuck_Norris < Character
   def round_house_kick(other)
     if hit?
       other.life -= self.damage
+      puts "Got'em!"
     else
       puts "Missed!"
     end
-    retaliation
+    retaliation(other)
   end
 
   def chuck_quote
@@ -79,22 +83,21 @@ end
 
 
 class Kung_fu_man < Character
-  attr_reader :character
+  attr_reader :name
 
   def initialize(difficulty=1)
-    @character = "Kung fu Man"
+    @name = "Kung fu Man"
     super
   end
 
 end
 
-class Game
-  attr_reader :char
-
-  def initialize(char)
-    @char = char
-    char.new
-  end
-
-
-end
+#class Game
+#  attr_reader :char
+#
+#    @char = char.to_sym
+#    char.new
+#  end
+#
+#
+#end
