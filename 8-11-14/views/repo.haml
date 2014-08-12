@@ -1,12 +1,23 @@
-%html
-  %head
-    %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel=>"stylesheet"}
-    %title Github Repo's
-  %body
-    %h1 Seach Github Repo's
-    %br
-      .container
-        %form{:method => 'POST'}
-          %input.form-control{:name => 'name', :placeholder => 'Input Github Username here!'}
-      - if @repo
-      %h2= @repo
+.container
+  %h1 Github Search
+  .well
+    %h3 Search Repositories
+    %form{:method => 'POST'}
+      %input.form-control{:name => "search", :placeholder => "Search here"}
+    - if @repos
+      %table.table.table-striped.table-condensed.table-hover
+        %thead
+          %th Repository
+          %th Size
+          %th Description
+          %th Created
+          %th Updated
+        %tbody
+        - @repos.each do |repo|
+          %tr
+            %td
+              %a{href: repo.url}= repo.name
+            %td= repo.size
+            %td= repo.description
+            %td= repo.created_at
+            %td= repo.updated_at

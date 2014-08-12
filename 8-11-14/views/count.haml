@@ -1,0 +1,20 @@
+%br
+%br
+.container
+  %h1 Letter Counter
+  .well
+    %form{:method => 'POST'}
+      %input.form-control{:name => 'counter', :placeholder => 'Input your sentence here!', value: @input}
+    .container
+    - if @input
+      %h4.lead= "Your input was : #{@input}"
+      %table.table.table-striped.table-condensed.table-hover
+        %tbody
+          %tr
+            %th letter
+            - @count.each do |key, value|
+              %td= key
+          %tr
+            %th count
+            - @count.each do |key, value|
+              %td= value

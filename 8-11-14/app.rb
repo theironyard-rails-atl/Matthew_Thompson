@@ -1,11 +1,21 @@
 require 'sinatra'
+require 'haml'
+require 'pry'
 
+require './lib/github.rb'
 
 get '/' do
-  haml :home
+  haml :index
 end
 
-post '/' do
+
+get '/count' do
+  @title = "Counter"
+  haml :count
+end
+
+post '/count' do
+  @title = "Counter"
   @count = {}
   @input = params[:counter]
   @input_split = @input.downcase.split("")
@@ -16,14 +26,16 @@ post '/' do
       @count[char] = 1
     end
   end
-  haml :home
+  haml :count
 end
 
-get '/github_repo' do
+get '/github' do
   haml :repo
 end
 
-post '/github_repo' do
-
+post '/github' do
+  @username = params[:search]
+  @repos = Github.repos_for(@username)
+  #binding.pry
   haml :repo
 end

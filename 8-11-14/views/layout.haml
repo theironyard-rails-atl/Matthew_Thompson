@@ -1,0 +1,17 @@
+%html
+  %head
+    %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel=>"stylesheet"}
+    %title= @title
+  %body
+    %nav.navbar.navbar-inverse{role: "navigation"}
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{href: "/"} Matt
+        %ul.nav.navbar-nav
+          %li
+            / This is a link to '/reverse'
+            / "http://www.google.com" to go off-site
+            %a{href: "/github"} Github
+          %li
+            %a{href: "/count"} Count
+    = yield
