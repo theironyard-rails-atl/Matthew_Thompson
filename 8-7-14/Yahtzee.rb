@@ -19,9 +19,8 @@ class Yahtzee
   end
 
   def choose_dye
-    @chosen = 
-
-
+    print @roll
+    @chosen << gets.chomp.to_i
   end
 
 end

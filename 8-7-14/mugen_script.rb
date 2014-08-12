@@ -58,6 +58,8 @@
 
 
 
+
+
   def start_vs_battle
     puts "#{@player.name} VS. #{@opponent.name}"
     print "..."
