@@ -1,11 +1,12 @@
 require 'sinatra'
 
+
 get '/' do
   haml :home
 end
 
 post '/' do
-  @count = {:t => 1, :r => 1, :y => 1}
+  @count = {}
   @input = params[:counter]
   @input_split = @input.downcase.split("")
   @input_split.each do |char|
@@ -16,4 +17,13 @@ post '/' do
     end
   end
   haml :home
+end
+
+get '/github_repo' do
+  haml :repo
+end
+
+post '/github_repo' do
+
+  haml :repo
 end

@@ -1,0 +1,12 @@
+%html
+  %head
+    %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel=>"stylesheet"}
+    %title Github Repo's
+  %body
+    %h1 Seach Github Repo's
+    %br
+      .container
+        %form{:method => 'POST'}
+          %input.form-control{:name => 'name', :placeholder => 'Input Github Username here!'}
+      - if @repo
+      %h2= @repo
